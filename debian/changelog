@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.8) UNRELEASED; urgency=medium
+
+  * Add new global storage value for stacked squashfses and adjust config.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 20 Nov 2024 23:58:39 -0600
+
 calamares-settings-ubuntu (1:25.04.7) plucky; urgency=medium
 
   * Change oem user in Lubuntu raspi prep to user number 60999

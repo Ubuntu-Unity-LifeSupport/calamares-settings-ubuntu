@@ -238,6 +238,7 @@ void PackageSelectViewStep::onLeave()
         return;
     }
 
+    bool isStackedSquashfs = m_configurationMap.value("stacked_squashfs").toBool();
     QVariantMap installationData = gs->value("installation_data").toMap();
     QString installationMode = installationData.value("installation_mode").toString();
     bool downloadUpdates = installationData.value("download_updates").toBool();
@@ -264,13 +265,20 @@ void PackageSelectViewStep::onLeave()
 
     globalData.insert("installation_mode", installationMode);
 
+    // Used by unpackfs on stacked squashfs systems
     if (installationMode == "minimal") {
-        QVariantList minimalPackages = m_configurationMap.value("packages").toMap().value("minimal_remove_packages").toList();
-        QVariantList installerPackages = m_configurationMap.value("packages").toMap().value("installer_remove_packages").toList();
-        QVariantList combinedRemove = minimalPackages + installerPackages;
-        globalData.insert("packages_to_remove", combinedRemove);
     }
-    else {
+
+    if (installationMode == "minimal") {
+        globalData.insert("unpack_regular", false);
+        if (!isStackedSquashfs) {
+            QVariantList minimalPackages = m_configurationMap.value("packages").toMap().value("minimal_remove_packages").toList();
+            QVariantList installerPackages = m_configurationMap.value("packages").toMap().value("installer_remove_packages").toList();
+            QVariantList combinedRemove = minimalPackages + installerPackages;
+            globalData.insert("packages_to_remove", combinedRemove);
+        }
+    } else {
+        globalData.insert("unpack_regular", true);
         // For normal and full, store packages to install
         QVariantList selectedPackagesList;
         // Store the snaps that are already on the system by default
@@ -317,8 +325,10 @@ void PackageSelectViewStep::onLeave()
         }
 
         globalData.insert("packages_to_install", selectedPackagesList);
-        QVariantList installerPackages = m_configurationMap.value("packages").toMap().value("installer_remove_packages").toList();
-        globalData.insert("packages_to_remove", installerPackages);
+        if (!isStackedSquashfs) {
+            QVariantList installerPackages = m_configurationMap.value("packages").toMap().value("installer_remove_packages").toList();
+            globalData.insert("packages_to_remove", installerPackages);
+        }
         globalData.insert("present_snaps", presentSnapList);
     }
 

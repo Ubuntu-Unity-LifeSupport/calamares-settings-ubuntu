@@ -51,13 +51,13 @@ Calamares::JobResult PackageSelectProcess::runAptCommand(const QString& command,
         commandHRPrefix = tr("Installing packages: ");
     } else if (command.contains("full-upgrade")) {
         commandHRPrefix = tr("Upgrading installed system: ");
-    } else if (command.contains("autoremove")) {
+    } else if (command.contains("remove")) {
         commandHRPrefix = tr("Cleaning up packages: ");
     }
 
     QRegularExpression getRegex(R"(Get:\d+\s+[^ ]+\s+[^ ]+\s+(.+?)\s+\S+\s+(\S+)\s+\[(.*?)\])");
 
-    connect(&aptProcess, &QProcess::readyReadStandardOutput, this, 
+    connect(&aptProcess, &QProcess::readyReadStandardOutput, this,
         [this, &aptProcess, &lineCount, progressPerLine, startProgress, endProgress, verboseProgress, commandHRPrefix, getRegex]() mutable {
             while (aptProcess.canReadLine()) {
                 QString line = QString::fromUtf8(aptProcess.readLine()).trimmed();
@@ -68,7 +68,7 @@ Calamares::JobResult PackageSelectProcess::runAptCommand(const QString& command,
                 if (verboseProgress && !line.contains("Running in chroot, ignoring command") &&
                     !line.contains("Waiting until unit") && !line.contains("Stopping snap") &&
                     !line.contains("/dev/pts")) {
-                    
+
                     // Process "Get:" lines to show download information
                     if (line.startsWith("Get:")) {
                         QRegularExpressionMatch match = getRegex.match(line);
@@ -219,7 +219,7 @@ Calamares::JobResult PackageSelectProcess::exec()
     const QVariantList packagesToInstall = installationData.value("packages_to_install").toList();
     const QVariantList packagesToRemove = installationData.value("packages_to_remove").toList();
     const QVariantList presentSnaps = installationData.value("present_snaps").toList();
-    
+
     // Handle default value for rootMountPoint
     QString rootMountPoint = "/";
     if (gs->contains("rootMountPoint")) {
@@ -336,9 +336,6 @@ Calamares::JobResult PackageSelectProcess::exec()
                                                            autoremoveStart,
                                                            autoremoveEnd,
                                                            true);
-    if (!autoremoveResult) { // Using operator bool() to check for errors
-        return std::move(autoremoveResult); // Move to avoid copy
-    }
 
     // Handle snap packages
     if (installationMode != "minimal") {
