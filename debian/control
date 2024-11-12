@@ -18,8 +18,8 @@ Build-Depends: calamares (>= 3.3.9),
                qt6-tools-dev-tools
 Standards-Version: 4.7.0
 Homepage: https://code.launchpad.net/~ubuntu-qt-code/+git/calamares-settings-ubuntu
-Vcs-Browser: https://git.lubuntu.me/Lubuntu/calamares-settings-ubuntu/
-Vcs-Git: https://git.lubuntu.me/Lubuntu/calamares-settings-ubuntu.git
+Vcs-Browser: https://git.launchpad.net/~ubuntu-qt-code/+git/calamares-settings-ubuntu
+Vcs-Git: https://git.launchpad.net/~ubuntu-qt-code/+git/calamares-settings-ubuntu
 Rules-Requires-Root: no
 
 Package: calamares-settings-kubuntu

@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.5) UNRELEASED; urgency=medium
+
+  * Fix Vcs to point to ubuntu-qt-code team LP git.
+
+ -- Rik Mills <rikmills@kde.org>  Tue, 12 Nov 2024 18:29:43 +0000
+
 calamares-settings-ubuntu (1:25.04.4) plucky; urgency=medium
 
   * kubuntu/modules/pkgselect.conf: Remove fcitx* from installed system.
