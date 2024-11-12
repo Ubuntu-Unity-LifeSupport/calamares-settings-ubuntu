@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.4) UNRELEASED; urgency=medium
+
+  * kubuntu/modules/pkgselect.conf: Remove fcitx* from installed system.
+
+ -- Rik Mills <rikmills@kde.org>  Tue, 12 Nov 2024 17:47:40 +0000
+
 calamares-settings-ubuntu (1:25.04.3) plucky; urgency=medium
 
   * Lubuntu: Set executable bit on raspberry pi prep script
