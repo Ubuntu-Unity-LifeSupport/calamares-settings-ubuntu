@@ -1,4 +1,4 @@
-calamares-settings-ubuntu (1:25.04.4) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.4) plucky; urgency=medium
 
   * kubuntu/modules/pkgselect.conf: Remove fcitx* from installed system.
 
