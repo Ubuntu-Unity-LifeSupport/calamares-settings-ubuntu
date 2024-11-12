@@ -1,4 +1,4 @@
-calamares-settings-ubuntu (1:25.04.5) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.5) plucky; urgency=medium
 
   * Fix Vcs to point to ubuntu-qt-code team LP git.
 
