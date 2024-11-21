@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.6) plucky; urgency=medium
+
+  * Lubuntu raspi prep: Create oem user so it can actually login to sddm
+
+ -- Erich Eickmeyer <eeickmeyer@ubuntu.com>  Wed, 20 Nov 2024 16:58:28 -0800
+
 calamares-settings-ubuntu (1:25.04.5) plucky; urgency=medium
 
   * Fix Vcs to point to ubuntu-qt-code team LP git.

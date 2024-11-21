@@ -3,6 +3,8 @@
 # First user configuration mode, bypassing oem config
 # mode
 
+useradd -G adm,cdrom,dip,lpadmin,plugdev,sambashare,sudo -m -s /bin/bash -u 1001 oem
+
 /usr/libexec/calamares-oemprep.sh
 
 sddm_file="$(cat <<EOL
