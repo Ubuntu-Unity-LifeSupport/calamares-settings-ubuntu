@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.7) plucky; urgency=medium
+
+  * Change oem user in Lubuntu raspi prep to user number 60999
+
+ -- Erich Eickmeyer <eeickmeyer@ubuntu.com>  Wed, 20 Nov 2024 17:05:19 -0800
+
 calamares-settings-ubuntu (1:25.04.6) plucky; urgency=medium
 
   * Lubuntu raspi prep: Create oem user so it can actually login to sddm
