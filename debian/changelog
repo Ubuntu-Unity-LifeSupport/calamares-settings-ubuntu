@@ -1,6 +1,7 @@
 calamares-settings-ubuntu (1:25.04.8) UNRELEASED; urgency=medium
 
   * Add new global storage value for stacked squashfses and adjust config.
+  * Switch Lubuntu to dracut.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 20 Nov 2024 23:58:39 -0600
 

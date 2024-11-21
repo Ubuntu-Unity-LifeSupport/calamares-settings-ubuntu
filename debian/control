@@ -65,6 +65,7 @@ Package: calamares-settings-ubuntu-common
 Architecture: any
 Depends: calamares (>= 3.3.11),
          cryptsetup,
+         dracut-core,
          kdialog,
          keyutils,
          python3,
