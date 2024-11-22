@@ -289,10 +289,10 @@ Calamares::JobResult PackageSelectProcess::exec()
     qDebug() << "Progress range: installStart:" << installStart << "installEnd:" << installEnd;
 
     if (!debPackages.isEmpty()) {
-        const QString packageList = debPackages.join(" -e ");
+        const QString packageList = debPackages.join(" ");
         const QString installCommand = QString(
-            "DEBIAN_FRONTEND=noninteractive apt-get -y install $(apt-cache --no-generate pkgnames %1 | grep -Fx -e %2)"
-        ).arg(debPackages.join(" ")).arg(packageList);
+            "DEBIAN_FRONTEND=noninteractive apt-get -y install $(for pkg in %1; do dpkg -s \"$pkg\" &>/dev/null || echo -n \"$pkg \"; done)"
+        ).arg(packageList);
 
         Calamares::JobResult installResult = runAptCommand(installCommand,
                                                             rootMountPoint,
