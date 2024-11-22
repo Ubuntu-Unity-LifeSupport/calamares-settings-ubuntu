@@ -1,10 +1,10 @@
-calamares-settings-ubuntu (1:25.04.8) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.8) plucky; urgency=medium
 
   * Add new global storage value for stacked squashfses and adjust config.
   * Switch Lubuntu to dracut.
   * Fix apt install functionality in pkgselectprocess.
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 20 Nov 2024 23:58:39 -0600
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Thu, 21 Nov 2024 22:27:59 -0600
 
 calamares-settings-ubuntu (1:25.04.7) plucky; urgency=medium
 
