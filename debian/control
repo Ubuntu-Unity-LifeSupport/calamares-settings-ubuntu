@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Lubuntu Developers <lubuntu-devel@lists.ubuntu.com>
 Uploaders: Simon Quigley <tsimonq2@ubuntu.com>
-Build-Depends: calamares (>= 3.3.11),
+Build-Depends: calamares (>= 3.3.12),
                cmake,
                debhelper-compat (= 13),
                extra-cmake-modules,
@@ -63,7 +63,7 @@ Description: Ubuntu Unity Calamares Settings and Branding
 
 Package: calamares-settings-ubuntu-common
 Architecture: any
-Depends: calamares (>= 3.3.11),
+Depends: calamares (>= 3.3.12),
          cryptsetup,
          dracut-core,
          kdialog,
