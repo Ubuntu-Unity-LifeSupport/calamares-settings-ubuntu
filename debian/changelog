@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.9) UNRELEASED; urgency=medium
+
+  * Add a Dracut config file for Lubuntu.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Fri, 22 Nov 2024 19:55:49 -0600
+
 calamares-settings-ubuntu (1:25.04.8) plucky; urgency=medium
 
   * Add new global storage value for stacked squashfses and adjust config.
