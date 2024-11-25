@@ -361,7 +361,14 @@ Calamares::JobResult PackageSelectProcess::exec()
     if (!debPackages.isEmpty()) {
         const QString packageList = debPackages.join(" ");
         const QString installCommand = QString(
-            "DEBIAN_FRONTEND=noninteractive apt-get -y install $(for pkg in %1; do dpkg -s \"$pkg\" &>/dev/null || echo -n \"$pkg \"; done)"
+            "packages_to_install=$(for pkg in %1; do "
+            "if ! dpkg -s \"$pkg\" &>/dev/null && apt-cache show \"$pkg\" &>/dev/null; then "
+            "printf \"%s \" \"$pkg\"; "
+            "fi; "
+            "done); "
+            "if [ -n \"$packages_to_install\" ]; then "
+            "DEBIAN_FRONTEND=noninteractive apt-get -y install $packages_to_install; "
+            "fi"
         ).arg(packageList);
 
         Calamares::JobResult installResult = runAptCommand(installCommand,

@@ -2,6 +2,8 @@ calamares-settings-ubuntu (1:25.04.10) UNRELEASED; urgency=medium
 
   * [pkgselectprocess] Add dpkg diversions for dracut, update-initramfs, and
     locale-gen. These will be called later in the process.
+  * [pkgselectprocess] Add a more robust check for apt packages when
+    installing them (LP: #2089494).
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 24 Nov 2024 20:22:55 -0600
 
