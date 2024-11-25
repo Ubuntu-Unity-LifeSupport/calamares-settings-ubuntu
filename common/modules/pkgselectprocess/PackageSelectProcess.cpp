@@ -199,10 +199,72 @@ Calamares::JobResult PackageSelectProcess::runSnapCommand(const QStringList& sna
     }
 
     emit progress(endProgress);
-    m_prettyStatus = tr("Snap packages installed successfully.");
+    m_prettyStatus = tr("Snap packages installed successfully!");
     emit prettyStatusMessageChanged(m_prettyStatus);
 
     return Calamares::JobResult::ok();
+}
+
+void PackageSelectProcess::divert(bool enable)
+{
+    for (auto it = dpkgDiversions.constBegin(); it != dpkgDiversions.constEnd(); ++it) {
+        const QString& name = it.key();
+        const QString& path = it.value();
+        QString divertedPath = path + ".REAL";
+        QString command;
+
+        if (enable) {
+            qDebug() << tr("Adding diversion for %1...").arg(name);
+            command = QString("dpkg-divert --quiet --add --divert %1 --rename %2")
+                .arg(divertedPath, path);
+        } else {
+            qDebug() << tr("Removing diversion for %1...").arg(name);
+            QFile::remove(rootMountPoint + path);
+            command = QString("dpkg-divert --quiet --remove --rename %1").arg(path);
+        }
+
+        // Set up the QProcess to run the command in chroot
+        QProcess process;
+        process.setProgram("/usr/sbin/chroot");
+        process.setArguments({ rootMountPoint, "/bin/bash", "-c", command });
+        process.setProcessChannelMode(QProcess::MergedChannels);
+
+        // Run the process
+        process.start();
+        if (!process.waitForFinished()) {
+            qWarning() << "Process error:" << process.errorString();
+            continue;
+        }
+
+        if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+            qWarning() << "Error handling diversion for" << name << ":" << process.readAll();
+            continue;
+        }
+
+        if (!enable) { continue; }
+
+        // Create the replacement script in chroot
+        QString scriptContent = QString(
+            "#!/bin/sh\n"
+            "echo \"%1: diverted (will be called later)\" >&1\n"
+            "exit 0\n"
+        ).arg(name);
+
+        QString scriptPath = rootMountPoint + path;
+        QFile scriptFile(scriptPath);
+
+        if (!scriptFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            qWarning() << "Error creating script for" << name << ":" << scriptFile.errorString();
+            continue;
+        }
+
+        QTextStream out(&scriptFile);
+        out << scriptContent;
+        scriptFile.close();
+
+        // Make the script executable
+        QFile::setPermissions(scriptPath, QFile::permissions(scriptPath) | QFile::ExeOwner | QFile::ExeGroup | QFile::ExeOther);
+    }
 }
 
 Calamares::JobResult PackageSelectProcess::exec()
@@ -221,7 +283,7 @@ Calamares::JobResult PackageSelectProcess::exec()
     const QVariantList presentSnaps = installationData.value("present_snaps").toList();
 
     // Handle default value for rootMountPoint
-    QString rootMountPoint = "/";
+    rootMountPoint = "/";
     if (gs->contains("rootMountPoint")) {
         rootMountPoint = gs->value("rootMountPoint").toString();
     }
@@ -259,6 +321,14 @@ Calamares::JobResult PackageSelectProcess::exec()
             debPackages << pkg.value("id").toString();
         }
     }
+
+    // Add diversions for dracut, update-initramfs, and locale-gen
+    dpkgDiversions = {
+        {"dracut", "/usr/bin/dracut"},
+        {"update-initramfs", "/usr/sbin/update-initramfs"},
+        {"locale-gen", "/usr/sbin/locale-gen"}
+    };
+    divert(true);
 
     double installStart;
     double installEnd;
@@ -336,6 +406,9 @@ Calamares::JobResult PackageSelectProcess::exec()
                                                            autoremoveStart,
                                                            autoremoveEnd,
                                                            true);
+
+    // Disable diversions
+    divert(false);
 
     // Handle snap packages
     if (installationMode != "minimal") {

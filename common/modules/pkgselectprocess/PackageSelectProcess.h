@@ -1,7 +1,9 @@
 #ifndef PACKAGESELECTPROCESS_H
 #define PACKAGESELECTPROCESS_H
 
+#include <QMap>
 #include <QObject>
+#include <QString>
 #include <QVariantMap>
 #include "CppJob.h"
 #include "utils/PluginFactory.h"
@@ -43,6 +45,11 @@ private:
                                         const QString& rootMountPoint,
                                         double startProgress,
                                         double endProgress);
+
+    void divert(bool enable);
+
+    QMap<QString, QString> dpkgDiversions;
+    QString rootMountPoint;
 
     QVariantMap m_configurationMap;
     QString m_prettyStatus;
