@@ -2,6 +2,7 @@ calamares-settings-ubuntu (1:25.04.11) UNRELEASED; urgency=medium
 
   * Rearrange the Lubuntu module order to account for packages with new stuff
     to put in the initramfs.
+  * Make forbidden_names much stronger (LP: #2088576).
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Mon, 25 Nov 2024 03:02:04 -0600
 
