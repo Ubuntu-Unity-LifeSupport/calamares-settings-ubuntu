@@ -1,3 +1,11 @@
+calamares-settings-ubuntu (1:25.04.12) plucky; urgency=medium
+
+  * [Lubuntu] Update password requirements to match NIST recommendations.
+  * [Lubuntu] Allow user to override password requirements, but not by
+    default.
+
+ -- Walter Lapchynski <wxl@ubuntu.com>  Tue, 28 Jan 2025 17:14:06 +0000
+
 calamares-settings-ubuntu (1:25.04.11) plucky; urgency=medium
 
   * Rearrange the Lubuntu module order to account for packages with new stuff
