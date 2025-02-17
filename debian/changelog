@@ -1,11 +1,11 @@
-calamares-settings-ubuntu (1:25.04.13) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.13) plucky; urgency=medium
 
   * [users] Set allowWeakPasswords and allowWeakPasswordsDefault to false for
     all three flavors, but add some basic password recommendations based on
     NIST standards, warning if the password falls outside of that.
   * [packaging] Bump Calamares dependency to 3.3.13-0ubuntu4 for users fixes.
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 16 Feb 2025 17:55:11 -0600
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 16 Feb 2025 18:05:36 -0600
 
 calamares-settings-ubuntu (1:25.04.12) plucky; urgency=medium
 
