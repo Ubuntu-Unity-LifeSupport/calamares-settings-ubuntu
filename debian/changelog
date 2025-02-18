@@ -1,10 +1,10 @@
-calamares-settings-ubuntu (1:25.04.14) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.14) plucky; urgency=medium
 
   * Add dh-sequence-qmldeps and ${qml6:Depends} to ensure all QML 6 runtime
     dependencies are properly picked up.
   * Run wrap-and-sort.
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 18 Feb 2025 00:28:25 -0600
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 18 Feb 2025 01:29:25 -0600
 
 calamares-settings-ubuntu (1:25.04.13) plucky; urgency=medium
 
