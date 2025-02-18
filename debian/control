@@ -6,6 +6,7 @@ Uploaders: Simon Quigley <tsimonq2@ubuntu.com>
 Build-Depends: calamares (>= 3.3.13-0ubuntu4),
                cmake,
                debhelper-compat (= 13),
+               dh-sequence-qmldeps,
                extra-cmake-modules,
                intltool,
                libkf6coreaddons-dev,
@@ -25,6 +26,7 @@ Rules-Requires-Root: no
 Package: calamares-settings-kubuntu
 Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
+         ${qml6:Depends},
          ${misc:Depends}
 Conflicts: calamares-settings-ubuntu-flavor
 Provides: calamares-settings-ubuntu-flavor
@@ -37,6 +39,7 @@ Description: Kubuntu Calamares Settings and Branding
 Package: calamares-settings-lubuntu
 Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
+         ${qml6:Depends},
          ${misc:Depends}
 Recommends: lubuntu-installer-prompt
 Conflicts: calamares-settings-ubuntu-flavor
@@ -52,6 +55,7 @@ Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
          qt6-style-kvantum,
          qt6-style-kvantum-themes,
+         ${qml6:Depends},
          ${misc:Depends}
 Conflicts: calamares-settings-ubuntu-flavor
 Provides: calamares-settings-ubuntu-flavor
@@ -70,11 +74,10 @@ Depends: calamares (>= 3.3.13-0ubuntu4),
          keyutils,
          python3,
          python3-distro,
-         qml6-module-qtquick,
-         qml6-module-qtquick-window,
          snapd-seed-glue,
          squashfs-tools,
          sudo,
+         ${qml6:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Common Calamares Settings
