@@ -3,10 +3,10 @@ Section: devel
 Priority: optional
 Maintainer: Lubuntu Developers <lubuntu-devel@lists.ubuntu.com>
 Uploaders: Simon Quigley <tsimonq2@ubuntu.com>
-Build-Depends: calamares (>= 3.3.13-0ubuntu4),
-               cmake,
-               debhelper-compat (= 13),
+Build-Depends: debhelper-compat (= 13),
                dh-sequence-qmldeps,
+               calamares (>= 3.3.13-0ubuntu4),
+               cmake,
                extra-cmake-modules,
                intltool,
                libkf6coreaddons-dev,
@@ -26,8 +26,8 @@ Rules-Requires-Root: no
 Package: calamares-settings-kubuntu
 Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
-         ${qml6:Depends},
-         ${misc:Depends}
+         ${misc:Depends},
+         ${qml6:Depends}
 Conflicts: calamares-settings-ubuntu-flavor
 Provides: calamares-settings-ubuntu-flavor
 Description: Kubuntu Calamares Settings and Branding
@@ -39,8 +39,8 @@ Description: Kubuntu Calamares Settings and Branding
 Package: calamares-settings-lubuntu
 Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
-         ${qml6:Depends},
-         ${misc:Depends}
+         ${misc:Depends},
+         ${qml6:Depends}
 Recommends: lubuntu-installer-prompt
 Conflicts: calamares-settings-ubuntu-flavor
 Provides: calamares-settings-ubuntu-flavor
@@ -55,8 +55,8 @@ Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
          qt6-style-kvantum,
          qt6-style-kvantum-themes,
-         ${qml6:Depends},
-         ${misc:Depends}
+         ${misc:Depends},
+         ${qml6:Depends}
 Conflicts: calamares-settings-ubuntu-flavor
 Provides: calamares-settings-ubuntu-flavor
 Description: Ubuntu Unity Calamares Settings and Branding
@@ -77,8 +77,8 @@ Depends: calamares (>= 3.3.13-0ubuntu4),
          snapd-seed-glue,
          squashfs-tools,
          sudo,
-         ${qml6:Depends},
          ${misc:Depends},
+         ${qml6:Depends},
          ${shlibs:Depends}
 Description: Common Calamares Settings
  This package contains the common Calamares settings for all flavors.
