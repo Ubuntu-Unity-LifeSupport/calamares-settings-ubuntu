@@ -92,7 +92,7 @@ calamares-settings-ubuntu (1:25.04.3) plucky; urgency=medium
 
 calamares-settings-ubuntu (1:25.04.2) plucky; urgency=medium
 
-  * Lubuntu: Add raspberry pi prep script 
+  * Lubuntu: Add raspberry pi prep script
 
  -- Erich Eickmeyer <eeickmeyer@ubuntu.com>  Sat, 09 Nov 2024 09:25:43 -0800
 
@@ -121,7 +121,7 @@ calamares-settings-ubuntu (1:24.10.4) oracular; urgency=medium
 calamares-settings-ubuntu (1:24.10.3) oracular; urgency=medium
 
   * Fix pkgselect UI becoming centered when minimal install mode is selected.
-    (LP: #2076303) 
+    (LP: #2076303)
 
  -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Thu, 08 Aug 2024 14:25:24 -0500
 
@@ -182,13 +182,13 @@ calamares-settings-ubuntu (1:24.04.36) noble; urgency=medium
 calamares-settings-ubuntu (1:24.04.35) noble; urgency=medium
 
   * Remove timeouts for network-related package commands. (LP: #2062106)
-  * Remove timeouts for update-initramfs. (LP: #2060429) 
+  * Remove timeouts for update-initramfs. (LP: #2060429)
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Fri, 19 Apr 2024 21:23:54 +0000
 
 calamares-settings-ubuntu (1:24.04.34) noble; urgency=medium
 
-  * Add icon on Desktop to finish OEM install. (LP: #2060928) 
+  * Add icon on Desktop to finish OEM install. (LP: #2060928)
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Fri, 19 Apr 2024 19:18:59 +0000
 
@@ -231,7 +231,7 @@ calamares-settings-ubuntu (1:24.04.29) noble; urgency=medium
 
 calamares-settings-ubuntu (1:24.04.28) noble; urgency=medium
 
-  * Run apt updates before installing packages. (LP: #2061150) 
+  * Run apt updates before installing packages. (LP: #2061150)
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Sat, 13 Apr 2024 00:44:32 +0000
 
@@ -315,7 +315,7 @@ calamares-settings-ubuntu (1:24.04.19) noble; urgency=medium
 
 calamares-settings-ubuntu (1:24.04.18) noble; urgency=medium
 
-  * GeoIP in welcome module disabled. 
+  * GeoIP in welcome module disabled.
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Wed, 13 Mar 2024 18:16:06 +0000
 
