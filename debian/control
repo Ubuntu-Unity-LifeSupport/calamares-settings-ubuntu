@@ -5,10 +5,10 @@ Maintainer: Lubuntu Developers <lubuntu-devel@lists.ubuntu.com>
 Uploaders: Simon Quigley <tsimonq2@ubuntu.com>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-qmldeps,
-               calamares (>= 3.3.13-0ubuntu4),
                cmake,
                extra-cmake-modules,
                intltool,
+               libcalamares-dev (>= 3.3.13-0ubuntu4),
                libkf6coreaddons-dev,
                libqt6svg6-dev,
                libyaml-cpp-dev,

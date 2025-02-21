@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.15) UNRELEASED; urgency=medium
+
+  * Move calamares -> libcalamares-dev for build dependencies.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Fri, 21 Feb 2025 12:33:59 -0600
+
 calamares-settings-ubuntu (1:25.04.14) plucky; urgency=medium
 
   * Add dh-sequence-qmldeps and ${qml6:Depends} to ensure all QML 6 runtime
