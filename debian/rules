@@ -7,7 +7,10 @@ export GO111MODULE=off
 export GOCACHE=$(CURDIR)/.gocache
 export PKGSELECT = "common/modules/pkgselect"
 export PKGSELECTPROCESS = "common/modules/pkgselectprocess"
+export USRDIR = "debian/calamares-settings-ubuntu-common/usr"
+export DATA_USRDIR = "debian/calamares-settings-ubuntu-common-data/usr"
 export MODULES_DIR = "debian/calamares-settings-ubuntu-common/usr/lib/$(DEB_HOST_MULTIARCH)/calamares/modules"
+export DATA_MODULES_DIR = "debian/calamares-settings-ubuntu-common-data/usr/lib/calamares/modules"
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
@@ -29,22 +32,22 @@ override_dh_auto_clean:
 
 override_dh_auto_install:
 	(cd $(PKGSELECT)/build && $(MAKE) DESTDIR=$(CURDIR)/debian/calamares-settings-ubuntu-common/ install)
-	(cd $(PKGSELECTPROCESS)/build && $(MAKE) DESTDIR=$(CURDIR)/debian/calamares-settings-ubuntu-common/ install)
 
 override_dh_missing:
 	dh_missing
-	mkdir -pv $(MODULES_DIR)
-	cp -vr common/modules/automirror $(MODULES_DIR)
-	mkdir -pv debian/calamares-settings-ubuntu-common/etc/calamares/modules
-	cp -vr common/modules/*.conf debian/calamares-settings-ubuntu-common/etc/calamares/modules
-	chmod -R 755 debian/calamares-settings-ubuntu-common/usr/lib/
-	chmod 644 $(MODULES_DIR)/automirror/automirror.conf
-	chmod 644 $(MODULES_DIR)/automirror/module.desc
+	mkdir -pv $(MODULES_DIR) $(DATA_MODULES_DIR)
+	cp -vr common/modules/automirror $(DATA_MODULES_DIR)
+	mkdir -pv debian/calamares-settings-ubuntu-common-data/etc/calamares/modules
+	cp -vr common/modules/*.conf debian/calamares-settings-ubuntu-common-data/etc/calamares/modules
+	chmod 644 $(DATA_MODULES_DIR)/automirror/automirror.conf
+	chmod 644 $(DATA_MODULES_DIR)/automirror/module.desc
 	chmod 644 $(MODULES_DIR)/pkgselect/libcalamares_viewmodule_pkgselect.so
 	chmod 644 $(MODULES_DIR)/pkgselect/module.desc
+	mkdir -pv $(MODULES_DIR)/pkgselectprocess
+	cp -v $(PKGSELECTPROCESS)/build/*.so $(PKGSELECTPROCESS)/build/*.desc $(MODULES_DIR)/pkgselectprocess
 	chmod 644 $(MODULES_DIR)/pkgselectprocess/libcalamares_job_pkgselectprocess.so
 	chmod 644 $(MODULES_DIR)/pkgselectprocess/module.desc
-	mkdir -pv debian/calamares-settings-ubuntu-common/usr/bin/
-	mkdir -pv debian/calamares-settings-ubuntu-common/usr/libexec/
-	cp -v common/fixconkeys-part1 debian/calamares-settings-ubuntu-common/usr/libexec/fixconkeys-part1
-	cp -v common/fixconkeys-part2 debian/calamares-settings-ubuntu-common/usr/libexec/fixconkeys-part2
+	mkdir -pv $(USRDIR)/libexec/ $(DATA_USRDIR)/libexec/
+	cp -v common/fixconkeys-part1 $(DATA_USRDIR)/libexec/fixconkeys-part1
+	cp -v common/fixconkeys-part2 $(DATA_USRDIR)/libexec/fixconkeys-part2
+	cp -v $(PKGSELECTPROCESS)/build/check_package $(USRDIR)/libexec/checkpackage-backend

@@ -8,6 +8,7 @@ Build-Depends: debhelper-compat (= 13),
                cmake,
                extra-cmake-modules,
                intltool,
+               libapt-pkg-dev,
                libcalamares-dev (>= 3.3.13-0ubuntu4),
                libkf6coreaddons-dev,
                libqt6svg6-dev,
@@ -68,19 +69,33 @@ Description: Ubuntu Unity Calamares Settings and Branding
 Package: calamares-settings-ubuntu-common
 Architecture: any
 Depends: calamares (>= 3.3.13-0ubuntu4),
+         calamares-settings-ubuntu-common-data (= ${binary:Version}),
          cryptsetup,
          dracut-core,
          kdialog,
          keyutils,
-         python3,
-         python3-distro,
          snapd-seed-glue,
          squashfs-tools,
          sudo,
          ${misc:Depends},
-         ${qml6:Depends},
          ${shlibs:Depends}
 Description: Common Calamares Settings
  This package contains the common Calamares settings for all flavors.
  There is also a automirror Python script to set sources based on
  geolocation.
+ .
+ Common settings for all Ubuntu flavors.
+
+Package: calamares-settings-ubuntu-common-data
+Architecture: all
+Depends: ${misc:Depends},
+         python3,
+         python3-distro,
+Conflicts: calamares-settings-ubuntu-common (<< 1:25.04.16)
+Replaces: calamares-settings-ubuntu-common (<< 1:25.04.16)
+Description: Data for Common Calamares Settings
+ This package contains the common Calamares settings for all flavors.
+ There is also a automirror Python script to set sources based on
+ geolocation.
+ .
+ Architecture-independent data for the common Calamares settings.

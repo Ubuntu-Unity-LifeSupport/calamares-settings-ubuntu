@@ -360,29 +360,16 @@ Calamares::JobResult PackageSelectProcess::exec()
 
     if (!debPackages.isEmpty()) {
         const QString packageList = debPackages.join(" ");
-        const QString installCommand = QString(
-            "packages_to_install=$(for pkg in %1; do "
-            "if ! dpkg -s \"$pkg\" &>/dev/null && apt-cache show \"$pkg\" &>/dev/null; then "
-            "printf \"%s \" \"$pkg\"; "
-            "fi; "
-            "done); "
-            "if [ -n \"$packages_to_install\" ]; then "
-            "DEBIAN_FRONTEND=noninteractive apt-get -y install $packages_to_install; "
-            "fi"
-        ).arg(packageList);
+        const QString installCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y install $(/usr/libexec/checkpackage-backend %1);").arg(packageList);
 
         Calamares::JobResult installResult = runAptCommand(installCommand,
                                                             rootMountPoint,
                                                             installStart,
                                                             installEnd,
                                                             true);
-        if (!installResult) { // Using operator bool() to check for errors
-            return std::move(installResult); // Move to avoid copy
-        }
+        if (!installResult) return std::move(installResult);
     }
-    else {
-        qDebug() << "No packages to install.";
-    }
+    else qDebug() << "No packages to install.";
 
     QStringList removeDebPackages;
     for (const QVariant& var : packagesToRemove) {

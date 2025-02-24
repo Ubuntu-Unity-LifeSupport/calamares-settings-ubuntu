@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.16) plucky; urgency=medium
+
+  * Fix installation of apt packages more consistently (LP: #2089494).
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Mon, 24 Feb 2025 03:53:14 -0600
+
 calamares-settings-ubuntu (1:25.04.15) plucky; urgency=medium
 
   * Move calamares -> libcalamares-dev for build dependencies.
