@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.17) plucky; urgency=medium
+
+  * [Lubuntu] Update welcome slides for Plucky. 
+
+ -- Walter Lapchynski <wxl@ubuntu.com>  Thu, 06 Mar 2025 10:23:08 +0000
+
 calamares-settings-ubuntu (1:25.04.16) plucky; urgency=medium
 
   * Fix installation of apt packages more consistently (LP: #2089494).
