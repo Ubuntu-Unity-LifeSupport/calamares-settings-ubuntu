@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.18) plucky; urgency=medium
+
+  * Add python3 as build-dep. 
+
+ -- Walter Lapchynski <wxl@ubuntu.com>  Fri, 07 Mar 2025 01:11:36 +0000
+
 calamares-settings-ubuntu (1:25.04.17) plucky; urgency=medium
 
   * [Lubuntu] Update welcome slides for Plucky. 
