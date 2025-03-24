@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.21) plucky; urgency=medium
+
+  * Update partition names to match current version.
+
+ -- Walter Lapchynski <wxl@ubuntu.com>  Mon, 24 Mar 2025 22:46:46 +0000
+
 calamares-settings-ubuntu (1:25.04.20) plucky; urgency=medium
 
   * Update OEM batch identifier to match current version.
