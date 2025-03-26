@@ -1,6 +1,7 @@
 calamares-settings-ubuntu (1:25.04.22) plucky; urgency=medium
 
   * [Unity] Update welcome slide for Plucky. 
+  * [Unity] Set Kvantum theme to KvGnomeDark for Calamares. 
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Wed, 26 Mar 2025 00:05:56 +0000
 
