@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.22) plucky; urgency=medium
+
+  * [Unity] Update welcome slide for Plucky. 
+
+ -- Walter Lapchynski <wxl@ubuntu.com>  Wed, 26 Mar 2025 00:05:56 +0000
+
 calamares-settings-ubuntu (1:25.04.21) plucky; urgency=medium
 
   * Update partition names to match current version.
