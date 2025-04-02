@@ -1,5 +1,6 @@
 calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
 
+  * Bump Standards-Version to 4.7.2, no changes needed.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
 
