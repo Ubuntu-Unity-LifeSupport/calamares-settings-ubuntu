@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QCoreApplication>
 #include <QRegularExpression>
+#include <QFile>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION(PackageSelectProcessFactory, registerPlugin<PackageSelectProcess>();)
 
@@ -359,15 +360,31 @@ Calamares::JobResult PackageSelectProcess::exec()
     qDebug() << "Progress range: installStart:" << installStart << "installEnd:" << installEnd;
 
     if (!debPackages.isEmpty()) {
-        const QString packageList = debPackages.join(" ");
-        const QString installCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y install $(/usr/libexec/checkpackage-backend %1);").arg(packageList);
+        const QString checkpackage_path = "/usr/libexec/checkpackage-backend";
+        const QString chroot_checkpackage_path = rootMountPoint + checkpackage_path;
 
-        Calamares::JobResult installResult = runAptCommand(installCommand,
-                                                            rootMountPoint,
-                                                            installStart,
-                                                            installEnd,
-                                                            true);
-        if (!installResult) return std::move(installResult);
+        // checkpackage-backend needs to be explicitly copied to the chroot
+        // and removed later for systems with stacked squashfses, or the
+        // install command will fail. LP: #2104243
+        QFile* cpbe = new QFile(chroot_checkpackage_path);
+        if (!cpbe->exists()) {
+            QFile* parent_cpbe = new QFile(checkpackage_path);
+            if (!parent_cpbe->copy(chroot_checkpackage_path)) {
+                return Calamares::JobResult::error(tr("Internal Error"),
+                                                   tr("Permission denied when copying checkpackage-backend, are you running Calamares correctly?"));
+            }
+
+            const QString packageList = debPackages.join(" ");
+            const QString installCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y install $(/usr/libexec/checkpackage-backend %1);").arg(packageList);
+
+            Calamares::JobResult installResult = runAptCommand(installCommand,
+                                                               rootMountPoint,
+                                                               installStart,
+                                                               installEnd,
+                                                               true);
+            if (!cpbe->remove()) qDebug() << "Warning: failed to clean up /usr/libexec/checkpackage-backend";
+            if (!installResult) return std::move(installResult);
+        }
     }
     else qDebug() << "No packages to install.";
 
