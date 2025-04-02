@@ -1,3 +1,8 @@
+calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
+
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
+
 calamares-settings-ubuntu (1:25.04.23) plucky; urgency=medium
 
   * [Kubuntu] Update welcome images for 25.04 (LP: #2104062)
