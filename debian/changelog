@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:25.04.23) UNRELEASED; urgency=medium
+
+  * [Kubuntu] Update welcome images for 25.04 (LP: #2104062)
+
+ -- Rik Mills <rikmills@kde.org>  Mon, 07 Apr 2025 10:59:23 +0100
+
 calamares-settings-ubuntu (1:25.04.22) plucky; urgency=medium
 
   * [Unity] Update welcome slide for Plucky. 
