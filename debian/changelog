@@ -17,6 +17,8 @@ calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
     The original goal here was to de-duplicate some of the trigger processing
     work, but it's obvious this needs more work. It's too premature to ship
     right now, unfortunately.
+  * [Lubuntu] Remove the Dracut configuration so we fall back to the defaults
+    provided by the package. This is a no-op.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
 
