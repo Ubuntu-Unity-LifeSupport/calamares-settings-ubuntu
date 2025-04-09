@@ -6,6 +6,11 @@ calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
     exists so it can be used in the install process. This fixes installation
     of the Virtual Machine Manager when selected on the Customize menu
     (LP: #2104243).
+  * [OEM] As a temporary stop-gap until this can be completely re-written next
+    cycle, ensure the sed call in the Calamares OEM setup refers to
+    pkgselectprocess, not packages. This was preventing the OEM processing
+    step (as opposed to just the GUI configuration) to be missing
+    (LP: #2104343).
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
 
