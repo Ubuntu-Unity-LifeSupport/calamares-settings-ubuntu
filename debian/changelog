@@ -1,4 +1,4 @@
-calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.24) plucky; urgency=medium
 
   * Bump Standards-Version to 4.7.2, no changes needed.
   * [pkgselectprocess] If checkpackage-backend does not exist in the target
@@ -20,7 +20,7 @@ calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
   * [Lubuntu] Remove the Dracut configuration so we fall back to the defaults
     provided by the package. This is a no-op.
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 07:02:36 -0500
 
 calamares-settings-ubuntu (1:25.04.23) plucky; urgency=medium
 
