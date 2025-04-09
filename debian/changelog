@@ -11,6 +11,8 @@ calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
     pkgselectprocess, not packages. This was preventing the OEM processing
     step (as opposed to just the GUI configuration) to be missing
     (LP: #2104343).
+  * [OEM] [Kubuntu] In stage two, ensure we use Wayland, consistent with the
+    rest of the session scripts.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
 
