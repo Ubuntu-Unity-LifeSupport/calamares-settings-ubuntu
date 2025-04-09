@@ -13,6 +13,10 @@ calamares-settings-ubuntu (1:25.04.24) UNRELEASED; urgency=medium
     (LP: #2104343).
   * [OEM] [Kubuntu] In stage two, ensure we use Wayland, consistent with the
     rest of the session scripts.
+  * [pkgselectprocess] Disable the dpkg trigger inhibition logic this cycle.
+    The original goal here was to de-duplicate some of the trigger processing
+    work, but it's obvious this needs more work. It's too premature to ship
+    right now, unfortunately.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Wed, 09 Apr 2025 01:55:07 -0500
 

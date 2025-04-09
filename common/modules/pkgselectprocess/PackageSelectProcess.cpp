@@ -324,12 +324,14 @@ Calamares::JobResult PackageSelectProcess::exec()
     }
 
     // Add diversions for dracut, update-initramfs, and locale-gen
+    /*
     dpkgDiversions = {
         {"dracut", "/usr/bin/dracut"},
         {"update-initramfs", "/usr/sbin/update-initramfs"},
         {"locale-gen", "/usr/sbin/locale-gen"}
     };
     divert(true);
+    */
 
     double installStart;
     double installEnd;
@@ -362,6 +364,19 @@ Calamares::JobResult PackageSelectProcess::exec()
     if (!debPackages.isEmpty()) {
         const QString checkpackage_path = "/usr/libexec/checkpackage-backend";
         const QString chroot_checkpackage_path = rootMountPoint + checkpackage_path;
+
+        // As part of the fix for LP: #2104343, we need to ensure that, if
+        // we are currently in OEM mode, Calamares and friends remain
+        // installed. During stage two, we clean it up.
+        // FIXME: When the OEM stack is rewritten in 25.10, this needs to be
+        // rewritten.
+        if (QFile::exists("/etc/calamares/OEM_MODE_ACTIVATED")) {
+            QStringList wip_list;
+            for (auto debPackage : debPackages) {
+                if (!debPackage.contains(QString("calamares"))) wip_list << debPackage;
+            }
+            debPackages = wip_list;
+        }
 
         // checkpackage-backend needs to be explicitly copied to the chroot
         // and removed later for systems with stacked squashfses, or the
@@ -419,7 +434,7 @@ Calamares::JobResult PackageSelectProcess::exec()
                                                            true);
 
     // Disable diversions
-    divert(false);
+    //divert(false);
 
     // Handle snap packages
     if (installationMode != "minimal") {
