@@ -1,4 +1,4 @@
-calamares-settings-ubuntu (1:25.04.25) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.25) plucky; urgency=medium
 
   * [pkgselectprocess] When we are creating the final list of packages to feed
     to "apt install," virtual packages which do not have a valid candidate are
@@ -20,7 +20,7 @@ calamares-settings-ubuntu (1:25.04.25) UNRELEASED; urgency=medium
     potential combinations have the intended functionality.
   * [OEM] Ensure the final desktop file completing OEM is marked as executable.
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 12 Apr 2025 00:23:39 -0500
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 13 Apr 2025 03:17:13 -0500
 
 calamares-settings-ubuntu (1:25.04.24) plucky; urgency=medium
 
