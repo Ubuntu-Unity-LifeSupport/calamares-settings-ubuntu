@@ -1,3 +1,14 @@
+calamares-settings-ubuntu (1:25.04.25) UNRELEASED; urgency=medium
+
+  * [pkgselectprocess] When we are creating the final list of packages to feed
+    to "apt install," virtual packages which do not have a valid candidate are
+    included in this list, causing the installation to fail. When creating
+    this list, use FindGrp instead of FindPkg, and only add it to the list if
+    there is a valid candidate. Additionally, add these items to an unordered
+    set, to eliminate deduplication (LP: #2106773).
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 12 Apr 2025 00:23:39 -0500
+
 calamares-settings-ubuntu (1:25.04.24) plucky; urgency=medium
 
   * Bump Standards-Version to 4.7.2, no changes needed.

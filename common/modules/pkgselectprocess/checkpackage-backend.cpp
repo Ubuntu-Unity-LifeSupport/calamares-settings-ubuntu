@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unordered_set>
 #include <apt-pkg/algorithms.h>
 #include <apt-pkg/cacheiterators.h>
 #include <apt-pkg/init.h>
@@ -28,9 +29,17 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> package_names(argv + 1, argv + argc);
     if (package_names.empty()) return 0;
 
+    std::unordered_set<std::string> seen_packages;
     for (std::string package_name : package_names) {
-        pkgCache::PkgIterator it = cache->GetPkgCache()->FindPkg(package_name);
-        if (!it.end()) std::cout << package_name << " ";
+        if (seen_packages.contains(package_name)) continue;
+        seen_packages.insert(package_name);
+        pkgCache::GrpIterator grp = cache->GetPkgCache()->FindGrp(package_name);
+        if (!grp.end()) {
+            pkgCache::PkgIterator it = grp.FindPreferredPkg(true);
+            if (!it.end() && !it.VersionList().end()) {
+                std::cout << package_name << " ";
+            }
+        }
     }
 
     std::cout << "\n";
