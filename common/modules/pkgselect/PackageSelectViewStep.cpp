@@ -324,6 +324,23 @@ void PackageSelectViewStep::onLeave()
             presentSnapList.append(snapId);
         }
 
+        // As a temporary measure until OEM is refactored in the 25.10 cycle,
+        // we need to ensure that Calamares and its necessary dependencies are
+        // installed on the target, iff this is a stacked squashfs.
+        // FIXME: remove in favor of more nuanced stacked squashfs
+        // functionality in 25.10
+        // Ref: https://discourse.ubuntu.com/t/implementation-of-ship-live-within-a-squashfs/57510
+        //      LP: #2104343
+        if (isStackedSquashfs) {
+            QVector<QString> stage_two_packages = {"calamares", "kdialog"};
+            for (QString& package_name : stage_two_packages) {
+                QVariantMap package_details;
+                package_details.insert("id", package_name);
+                package_details.insert("snap", false);
+                selectedPackagesList.append(package_details);
+            }
+        }
+
         globalData.insert("packages_to_install", selectedPackagesList);
         if (!isStackedSquashfs) {
             QVariantList installerPackages = m_configurationMap.value("packages").toMap().value("installer_remove_packages").toList();
