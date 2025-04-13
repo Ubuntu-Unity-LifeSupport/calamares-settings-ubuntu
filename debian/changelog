@@ -18,6 +18,7 @@ calamares-settings-ubuntu (1:25.04.25) UNRELEASED; urgency=medium
     disabled, and Calamares shows up on the install list only for stacked
     squashfses which have OEM enabled. This nuanced approach ensures all
     potential combinations have the intended functionality.
+  * [OEM] Ensure the final desktop file completing OEM is marked as executable.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 12 Apr 2025 00:23:39 -0500
 
