@@ -365,15 +365,19 @@ Calamares::JobResult PackageSelectProcess::exec()
         const QString checkpackage_path = "/usr/libexec/checkpackage-backend";
         const QString chroot_checkpackage_path = rootMountPoint + checkpackage_path;
 
-        // As part of the fix for LP: #2104343, we need to ensure that, if
-        // we are currently in OEM mode, Calamares and friends remain
-        // installed. During stage two, we clean it up.
+        // Corresponding to the temporary hack in pkgselect adding calamares
+        // and kdialog to the list, we only want those two included in the
+        // final installation if we're actually in OEM mode. Otherwise, they
+        // can be ignored, and are just clutter.
         // FIXME: When the OEM stack is rewritten in 25.10, this needs to be
-        // rewritten.
-        if (QFile::exists("/etc/calamares/OEM_MODE_ACTIVATED")) {
+        // removed.
+        if (!QFile::exists("/etc/calamares/OEM_MODE_ACTIVATED")) {
             QStringList wip_list;
             for (auto debPackage : debPackages) {
-                if (!debPackage.contains(QString("calamares"))) wip_list << debPackage;
+                if (!debPackage.contains(QString("calamares")) &&
+                    !debPackage.contains(QString("kdialog"))) {
+                    wip_list << debPackage;
+                }
             }
             debPackages = wip_list;
         }
@@ -406,6 +410,19 @@ Calamares::JobResult PackageSelectProcess::exec()
     QStringList removeDebPackages;
     for (const QVariant& var : packagesToRemove) {
         removeDebPackages << var.toString();
+    }
+
+    // As part of the fix for LP: #2104343, we need to ensure that, if
+    // we are currently in OEM mode, Calamares and friends remain
+    // installed. During stage two, we clean it up.
+    // FIXME: When the OEM stack is rewritten in 25.10, this needs to be
+    // rewritten.
+    if (QFile::exists("/etc/calamares/OEM_MODE_ACTIVATED")) {
+        QStringList wip_list;
+        for (auto removeDebPackage : removeDebPackages) {
+            if (!removeDebPackage.contains(QString("calamares"))) wip_list << removeDebPackage;
+        }
+        removeDebPackages = wip_list;
     }
 
     const double removeStart = installEnd;

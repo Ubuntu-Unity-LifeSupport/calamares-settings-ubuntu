@@ -13,6 +13,11 @@ calamares-settings-ubuntu (1:25.04.25) UNRELEASED; urgency=medium
     about stacked squashfses, it's what provides the final "additional install
     list" to be considered by checkpackage-backend, and this is a temporary
     fix anyway (LP: #2104343).
+  * [pkgselectprocess] To complement the last fix, ensure that Calamares ends
+    up on the removal list for non-stacked squashfses if and only if OEM is
+    disabled, and Calamares shows up on the install list only for stacked
+    squashfses which have OEM enabled. This nuanced approach ensures all
+    potential combinations have the intended functionality.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 12 Apr 2025 00:23:39 -0500
 
