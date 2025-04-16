@@ -407,6 +407,8 @@ Calamares::JobResult PackageSelectProcess::exec()
                                                                true);
             if (!cpbe->remove()) qDebug() << "Warning: failed to clean up /usr/libexec/checkpackage-backend";
             if (!installResult) return std::move(installResult);
+        } else {
+            if (!cpbe->remove()) qDebug() << "Warning: failed to clean up /usr/libexec/checkpackage-backend";
         }
     }
     else qDebug() << "No packages to install.";
@@ -433,16 +435,14 @@ Calamares::JobResult PackageSelectProcess::exec()
     const double removeEnd = removeStart + 0.2 * aptRange;
 
     if (!removeDebPackages.isEmpty()) {
-        const QString removeCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y --purge remove %1")
+        const QString removeCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y --purge remove $(/usr/libexec/checkpackage-backend %1);")
                                          .arg(removeDebPackages.join(" "));
         Calamares::JobResult removeResult = runAptCommand(removeCommand,
                                                           rootMountPoint,
                                                           removeStart,
                                                           removeEnd,
                                                           true);
-        if (!removeResult) { // Using operator bool() to check for errors
-            return std::move(removeResult); // Move to avoid copy
-        }
+        if (!removeResult) return std::move(removeResult);
     }
 
     const double autoremoveStart = removeEnd;
