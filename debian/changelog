@@ -1,3 +1,8 @@
+calamares-settings-ubuntu (1:25.04.26) UNRELEASED; urgency=medium
+
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 15 Apr 2025 22:15:17 -0500
+
 calamares-settings-ubuntu (1:25.04.25) plucky; urgency=medium
 
   * [pkgselectprocess] When we are creating the final list of packages to feed
