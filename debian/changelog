@@ -15,6 +15,16 @@ calamares-settings-ubuntu (1:25.04.26) UNRELEASED; urgency=medium
   * [pkgselectprocess] Ensure hasInternet is available as a local variable, so
     we can use it.
   * [pkgselectprocess] When running apt remove, use CPBE just in case.
+  * [pkgselectprocess] When doing installations without network, we need to
+    ensure that we don't try to perform apt operations that require internet.
+    To do this in Plucky, we need to temporarily copy the ubuntu.sources file
+    to an ubuntu.sources.bak file. To bring all of the previous commits in
+    this upload together, we use the bind-mounted /media/cdrom not only to
+    install the correct GRUB packages, but to ensure that we can still install
+    them and any other packages on ship-live. There has to be a better, more
+    native way to do this. It works for now, but in the Questing cycle, we're
+    probably going to move some of these command-line apt calls to be a
+    consumer of the libapt C library (LP: #2107287).
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 15 Apr 2025 22:15:17 -0500
 

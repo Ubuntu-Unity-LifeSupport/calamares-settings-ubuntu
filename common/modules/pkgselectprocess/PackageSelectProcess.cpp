@@ -300,12 +300,35 @@ Calamares::JobResult PackageSelectProcess::exec()
     };
 
     const QVector<ProgressAllocation> allocations = allocationMap.value(installationMode, { {0.0, 1.0} });
-
-    // Run apt update
     const double aptRange = allocations[0].end - allocations[0].start;
     const double updateStart = allocations[0].start;
     const double updateEnd = updateStart + 0.1 * aptRange;
 
+    // Temporarily copy ubuntu.sources elsewhere, if we do not have network
+    // This is so we can update the apt cache safely
+    // FIXME: there has to be a better, more native way to do this. It works
+    // for now, but in the 25.10 cycle, we're probably going to move some of
+    // these command-line apt calls to the libapt C library. LP: #2107287
+    if (!hasInternet) {
+        const QString ubuntu_sources_path = rootMountPoint + "/etc/apt/sources.list.d/ubuntu.sources";
+        QFile* ubuntu_sources = new QFile(ubuntu_sources_path);
+        // Just in case this module is used in a non-Ubuntu environment, make sure ubuntu.sources exists
+        // TODO: make this configurable in the 25.10 cycle
+        if (ubuntu_sources->exists()) {
+            const QString backup_name = ubuntu_sources_path + ".bak";
+            if (!ubuntu_sources->rename(ubuntu_sources_path + ".bak")) {
+                return Calamares::JobResult::error(tr("Internal Error"),
+                                                   tr("Permission denied when moving ubuntu.sources to prepare for offline install"));
+            }
+            Calamares::JobResult addCdromResult = runAptCommand("apt-cdrom add -m -d=/media/cdrom/", rootMountPoint, updateStart, updateEnd, true);
+            if (!addCdromResult) return std::move(addCdromResult);
+        } else {
+            return Calamares::JobResult::error(tr("Internal Error"),
+                                               tr("/etc/apt/sources.list.d/ubuntu.sources not found in the target, are you a downstream?"));
+        }
+    }
+
+    // Run apt update
     m_prettyStatus = tr("Updating apt cache");
     emit prettyStatusMessageChanged(m_prettyStatus);
     emit progress(updateStart);
@@ -456,6 +479,44 @@ Calamares::JobResult PackageSelectProcess::exec()
 
     // Disable diversions
     //divert(false);
+
+    // Move ubuntu.sources back, and clean up the cdrom file
+    // FIXME: there has to be a better, more native way to do this. It works
+    // for now, but in the 25.10 cycle, we're probably going to move some of
+    // these command-line apt calls to the libapt C library. LP: #2107287
+    try {
+    if (!hasInternet) {
+        const QString ubuntu_sources_path = rootMountPoint + "/etc/apt/sources.list.d/ubuntu.sources";
+        const QString backup_name = ubuntu_sources_path + ".bak";
+        QFile* ubuntu_sources = new QFile(ubuntu_sources_path);
+        QFile* ubuntu_sources_bak = new QFile(backup_name);
+        // Just in case this module is used in a non-Ubuntu environment, make sure ubuntu.sources exists
+        // TODO: make this configurable in the 25.10 cycle
+        if (ubuntu_sources->exists()) {
+            if (!ubuntu_sources->remove()) {
+                return Calamares::JobResult::error(tr("Internal Error"),
+                                                   tr("/etc/apt/sources.list.d/ubuntu.sources already exists and it won't budge - this is a rare edge case, please report!"));
+            }
+        }
+        if (!ubuntu_sources_bak->rename(ubuntu_sources_path)) {
+            return Calamares::JobResult::error(tr("Internal Error"),
+                                               tr("Permission denied when moving ubuntu.sources back after offline install"));
+        }
+
+        // Remove the apt-cdrom entry we added earlier
+        // This may seem drastic, but we already expect that the automirror
+        // module, ran before this, creates a deb822-style ubuntu.sources
+        QFile* cdrom_sources_list = new QFile(rootMountPoint + "/etc/apt/sources.list");
+        if (!cdrom_sources_list->remove()) {
+            return Calamares::JobResult::error(tr("Internal Error"),
+                                               tr("Failed to remove classic sources.list file"));
+        }
+    }
+    } catch (const std::exception &exc) {
+        qDebug() << exc.what();
+    } catch (...) {
+        qDebug() << "Caught unknown error";
+    }
 
     // Handle snap packages
     if (installationMode != "minimal") {
