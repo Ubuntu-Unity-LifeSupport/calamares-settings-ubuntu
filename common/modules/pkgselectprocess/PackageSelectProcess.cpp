@@ -281,7 +281,8 @@ Calamares::JobResult PackageSelectProcess::exec()
 
     const QVariantMap installationData = gs->value("installation_data").toMap();
     const QString installationMode = installationData.value("installation_mode").toString();
-    const bool downloadUpdates = installationData.value("download_updates").toBool();
+    const bool hasInternet = installationData.value("hasInternet").toBool();
+    const bool downloadUpdates = (installationData.value("download_updates").toBool() && hasInternet);
     const QVariantList packagesToInstall = installationData.value("packages_to_install").toList();
     const QVariantList packagesToRemove = installationData.value("packages_to_remove").toList();
     const QVariantList presentSnaps = installationData.value("present_snaps").toList();
