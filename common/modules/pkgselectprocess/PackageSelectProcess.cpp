@@ -55,6 +55,8 @@ Calamares::JobResult PackageSelectProcess::runAptCommand(const QString& command,
         commandHRPrefix = tr("Upgrading installed system: ");
     } else if (command.contains("remove")) {
         commandHRPrefix = tr("Cleaning up packages: ");
+    } else if (command.contains("cdrom")) {
+        commandHRPrefix = tr("cdrom: ");
     }
 
     QRegularExpression getRegex(R"(Get:\d+\s+[^ ]+\s+[^ ]+\s+(.+?)\s+\S+\s+(\S+)\s+\[(.*?)\])");

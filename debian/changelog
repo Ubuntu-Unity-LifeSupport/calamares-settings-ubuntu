@@ -7,6 +7,7 @@ calamares-settings-ubuntu (1:25.04.26) UNRELEASED; urgency=medium
     cycle, ideally being worked directly into a dedicated C++ module instead
     of several, miscellaneous shell scripts wrapped in YAML.
   * [pkgselectprocess] Explicitly log all apt commands in the debug logs.
+  * [pkgselectprocess] Ensure apt-cdrom command outputs have their own prefix.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 15 Apr 2025 22:15:17 -0500
 
