@@ -1,4 +1,4 @@
-calamares-settings-ubuntu (1:25.04.26) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.04.26) plucky; urgency=medium
 
   * [bootloader] Instead of utilizing a contextualprocess to only bind-mount
     /cdrom to /media/cdrom when it's a specific type of system, simply add it
@@ -26,7 +26,7 @@ calamares-settings-ubuntu (1:25.04.26) UNRELEASED; urgency=medium
     probably going to move some of these command-line apt calls to be a
     consumer of the libapt C library (LP: #2107287).
 
- -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 15 Apr 2025 22:15:17 -0500
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 15 Apr 2025 22:36:52 -0500
 
 calamares-settings-ubuntu (1:25.04.25) plucky; urgency=medium
 
