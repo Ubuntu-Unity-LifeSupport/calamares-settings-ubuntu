@@ -62,9 +62,12 @@ Calamares::JobResult PackageSelectProcess::runAptCommand(const QString& command,
     QRegularExpression getRegex(R"(Get:\d+\s+[^ ]+\s+[^ ]+\s+(.+?)\s+\S+\s+(\S+)\s+\[(.*?)\])");
 
     connect(&aptProcess, &QProcess::readyReadStandardOutput, this,
-        [this, &aptProcess, &lineCount, progressPerLine, startProgress, endProgress, verboseProgress, commandHRPrefix, getRegex]() mutable {
-            while (aptProcess.canReadLine()) {
-                QString line = QString::fromUtf8(aptProcess.readLine()).trimmed();
+        [this, &lineCount, progressPerLine, startProgress, endProgress, verboseProgress, commandHRPrefix, getRegex]() {
+            QProcess *aptProcess = (QProcess *)(QObject::sender());
+            if (aptProcess == NULL) return;
+            while (aptProcess->canReadLine()) {
+                QString line = QString::fromUtf8(aptProcess->readLine()).trimmed();
+                qDebug() << "Apt log line: " << line;
                 if (line.isEmpty()) {
                     continue;
                 }
@@ -145,7 +148,7 @@ Calamares::JobResult PackageSelectProcess::runSnapCommand(const QStringList& sna
 
     QString currentDescription;
 
-    connect(&snapProcess, &QProcess::readyReadStandardOutput, this, 
+    connect(&snapProcess, &QProcess::readyReadStandardOutput, this,
         [&snapProcess, this, &currentDescription, startProgress, endProgress]( ) {
             while (snapProcess.canReadLine()) {
                 QString line = QString::fromUtf8(snapProcess.readLine()).trimmed();
@@ -281,7 +284,7 @@ Calamares::JobResult PackageSelectProcess::exec()
 
     const QVariantMap installationData = gs->value("installation_data").toMap();
     const QString installationMode = installationData.value("installation_mode").toString();
-    const bool hasInternet = installationData.value("hasInternet").toBool();
+    const bool hasInternet = gs->value("hasInternet").toBool();
     const bool downloadUpdates = (installationData.value("download_updates").toBool() && hasInternet);
     const QVariantList packagesToInstall = installationData.value("packages_to_install").toList();
     const QVariantList packagesToRemove = installationData.value("packages_to_remove").toList();
@@ -292,6 +295,10 @@ Calamares::JobResult PackageSelectProcess::exec()
     if (gs->contains("rootMountPoint")) {
         rootMountPoint = gs->value("rootMountPoint").toString();
     }
+
+    const QString checkpackage_path = "/usr/libexec/checkpackage-backend";
+    const QString chroot_checkpackage_path = rootMountPoint + checkpackage_path;
+    QFile* cpbe = new QFile(chroot_checkpackage_path);
 
     static const QMap<QString, QVector<ProgressAllocation>> allocationMap = {
         { "minimal", { {0.0, 1.0} } },
@@ -389,9 +396,6 @@ Calamares::JobResult PackageSelectProcess::exec()
     qDebug() << "Progress range: installStart:" << installStart << "installEnd:" << installEnd;
 
     if (!debPackages.isEmpty()) {
-        const QString checkpackage_path = "/usr/libexec/checkpackage-backend";
-        const QString chroot_checkpackage_path = rootMountPoint + checkpackage_path;
-
         // Corresponding to the temporary hack in pkgselect adding calamares
         // and kdialog to the list, we only want those two included in the
         // final installation if we're actually in OEM mode. Otherwise, they
@@ -412,26 +416,25 @@ Calamares::JobResult PackageSelectProcess::exec()
         // checkpackage-backend needs to be explicitly copied to the chroot
         // and removed later for systems with stacked squashfses, or the
         // install command will fail. LP: #2104243
-        QFile* cpbe = new QFile(chroot_checkpackage_path);
         if (!cpbe->exists()) {
             QFile* parent_cpbe = new QFile(checkpackage_path);
             if (!parent_cpbe->copy(chroot_checkpackage_path)) {
                 return Calamares::JobResult::error(tr("Internal Error"),
                                                    tr("Permission denied when copying checkpackage-backend, are you running Calamares correctly?"));
             }
+        }
 
-            const QString packageList = debPackages.join(" ");
-            const QString installCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y install $(/usr/libexec/checkpackage-backend %1);").arg(packageList);
+        const QString packageList = debPackages.join(" ");
+        const QString installCommand = QString("DEBIAN_FRONTEND=noninteractive apt-get -y install $(/usr/libexec/checkpackage-backend %1);").arg(packageList);
 
-            Calamares::JobResult installResult = runAptCommand(installCommand,
-                                                               rootMountPoint,
-                                                               installStart,
-                                                               installEnd,
-                                                               true);
+        Calamares::JobResult installResult = runAptCommand(installCommand,
+                                                           rootMountPoint,
+                                                           installStart,
+                                                           installEnd,
+                                                           true);
+        if (!installResult) {
             if (!cpbe->remove()) qDebug() << "Warning: failed to clean up /usr/libexec/checkpackage-backend";
-            if (!installResult) return std::move(installResult);
-        } else {
-            if (!cpbe->remove()) qDebug() << "Warning: failed to clean up /usr/libexec/checkpackage-backend";
+            return std::move(installResult);
         }
     }
     else qDebug() << "No packages to install.";
@@ -563,6 +566,8 @@ Calamares::JobResult PackageSelectProcess::exec()
     emit progress(1.0);
     m_prettyStatus = tr("All selected packages installed successfully.");
     emit prettyStatusMessageChanged(m_prettyStatus);
+
+    if (!cpbe->remove()) qDebug() << "Warning: failed to clean up /usr/libexec/checkpackage-backend";
 
     return Calamares::JobResult::ok();
 }

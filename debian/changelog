@@ -1,3 +1,13 @@
+calamares-settings-ubuntu (1:25.04.27) plucky; urgency=medium
+
+  * Disable virt-manager installation in third-party software options, as the
+    package is broken when installed by pkgselect.
+  * Remove full installation and third-party software options from all
+    flavors.
+  * Fix segfaults during installation. (LP: #2107486)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Wed, 16 Apr 2025 18:23:56 -0500
+
 calamares-settings-ubuntu (1:25.04.26) plucky; urgency=medium
 
   * [bootloader] Instead of utilizing a contextualprocess to only bind-mount
@@ -87,8 +97,8 @@ calamares-settings-ubuntu (1:25.04.23) plucky; urgency=medium
 
 calamares-settings-ubuntu (1:25.04.22) plucky; urgency=medium
 
-  * [Unity] Update welcome slide for Plucky. 
-  * [Unity] Set Kvantum theme to KvGnomeDark for Calamares. 
+  * [Unity] Update welcome slide for Plucky.
+  * [Unity] Set Kvantum theme to KvGnomeDark for Calamares.
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Wed, 26 Mar 2025 00:05:56 +0000
 
@@ -108,19 +118,19 @@ calamares-settings-ubuntu (1:25.04.19) plucky; urgency=medium
 
   * [Lubuntu] Update slides for current applications:
     * Support: IRC -> Matrix, Lubuntu -> Ubuntu Discourse
-    * Lightweight: KCalc -> Qalc 
+    * Lightweight: KCalc -> Qalc
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Fri, 07 Mar 2025 03:21:03 +0000
 
 calamares-settings-ubuntu (1:25.04.18) plucky; urgency=medium
 
-  * Add python3 as build-dep. 
+  * Add python3 as build-dep.
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Fri, 07 Mar 2025 01:11:36 +0000
 
 calamares-settings-ubuntu (1:25.04.17) plucky; urgency=medium
 
-  * [Lubuntu] Update welcome slides for Plucky. 
+  * [Lubuntu] Update welcome slides for Plucky.
 
  -- Walter Lapchynski <wxl@ubuntu.com>  Thu, 06 Mar 2025 10:23:08 +0000
 

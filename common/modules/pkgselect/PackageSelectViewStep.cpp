@@ -100,7 +100,8 @@ void PackageSelectViewStep::onActivate()
     bool hasInternet = network.hasInternet();
 
     // Handle network unavailability
-    if (!hasInternet) {
+    //if (!hasInternet) {
+        // Disable almost all fancy features to avoid bugs, revert in 25.10 cycle
         ui->full_button->setVisible(false);
         ui->full_text->setVisible(false);
 
@@ -114,7 +115,7 @@ void PackageSelectViewStep::onActivate()
         ui->extraparty_scroll->setVisible(false);
         ui->extraparty_text->setVisible(false);
         ui->mandatory_warning_label->setVisible(false);
-    }
+    //}
 
     // Dynamically create package checkboxes only once
     if (m_packageCheckBoxes.isEmpty()) {
