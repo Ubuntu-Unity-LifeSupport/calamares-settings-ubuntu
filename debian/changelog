@@ -1,5 +1,11 @@
 calamares-settings-ubuntu (1:25.04.26) UNRELEASED; urgency=medium
 
+  * [bootloader] Instead of utilizing a contextualprocess to only bind-mount
+    /cdrom to /media/cdrom when it's a specific type of system, simply add it
+    to the mounts for all flavors, and move the specific copy of the vmlinuz
+    file to a dedicated shellprocess module. This will be re-factored next
+    cycle, ideally being worked directly into a dedicated C++ module instead
+    of several, miscellaneous shell scripts wrapped in YAML.
 
  -- Simon Quigley <tsimonq2@ubuntu.com>  Tue, 15 Apr 2025 22:15:17 -0500
 
