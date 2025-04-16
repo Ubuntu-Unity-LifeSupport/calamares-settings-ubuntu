@@ -37,6 +37,7 @@ Calamares::JobResult PackageSelectProcess::runAptCommand(const QString& command,
                                                           double endProgress,
                                                           bool verboseProgress)
 {
+    qDebug() << "Running apt command:" << command;
     QProcess aptProcess(this);
     aptProcess.setProgram("/usr/sbin/chroot");
     aptProcess.setArguments({ rootMountPoint, "/bin/bash", "-c", command });
