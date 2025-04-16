@@ -33,6 +33,12 @@ int main(int argc, char* argv[]) {
     for (std::string package_name : package_names) {
         if (seen_packages.contains(package_name)) continue;
         seen_packages.insert(package_name);
+
+        // Tasks and wildcards should just be passed through as-is, for now
+        if (package_name.starts_with('^') || package_name.contains('*')) {
+            std::cout << package_name << " ";
+            continue;
+        }
         pkgCache::GrpIterator grp = cache->GetPkgCache()->FindGrp(package_name);
         if (!grp.end()) {
             pkgCache::PkgIterator it = grp.FindPreferredPkg(true);
