@@ -29,7 +29,7 @@ if kdialog --warningyesno "${msg}"; then
   sed -i "/- welcome$/a \ \ - oemid" /etc/calamares/settings.conf;
 
   # Enable OEM prep module
-  sed -i "/- pkgselectprocess$/a \ \ - shellprocess@oemprep" /etc/calamares/settings.conf;
+  sed -i "/- packages$/a \ \ - shellprocess@oemprep" /etc/calamares/settings.conf;
 
   # Fix OEM UID
   sed -i "/- shellprocess@oemprep$/a \ \ - shellprocess@fix-oem-uid" /etc/calamares/settings.conf;

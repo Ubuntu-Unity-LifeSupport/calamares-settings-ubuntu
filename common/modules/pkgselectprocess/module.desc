@@ -1,7 +1,0 @@
----
-type: "job"
-name: "pkgselectprocess"
-interface: "qtplugin"
-load: "libcalamares_job_pkgselectprocess.so"
-noconfig: true
-weight: 12
