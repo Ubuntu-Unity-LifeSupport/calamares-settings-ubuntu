@@ -6,10 +6,10 @@ windowExpanding:    fullscreen
 strings:
     productName:         Ubuntu Unity
     shortProductName:    Ubuntu Unity
-    version:             25.04
-    shortVersion:        plucky
+    version:             25.10
+    shortVersion:        questing
     versionedName:       Ubuntu Unity
-    shortVersionedName:  Ubuntu Unity 25.04
+    shortVersionedName:  Ubuntu Unity 25.10
     bootloaderEntryName: Ubuntu
     productUrl:          https://ubuntuunity.org/
 

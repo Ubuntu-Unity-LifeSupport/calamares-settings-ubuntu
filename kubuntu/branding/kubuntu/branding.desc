@@ -7,7 +7,7 @@ strings:
     productName:         Kubuntu
     shortProductName:    Kubuntu
     version:             25.10
-    shortVersion:        plucky
+    shortVersion:        questing
     versionedName:       Kubuntu
     shortVersionedName:  Kubuntu 25.10
     bootloaderEntryName: Kubuntu
