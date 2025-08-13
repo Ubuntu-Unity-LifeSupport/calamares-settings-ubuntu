@@ -3,6 +3,7 @@ calamares-settings-ubuntu (1:25.10.2) questing; urgency=medium
   * Revert the packageselect refactoring from Plucky, go back to the
     known-good package customization implementation.
   * Update everyone's installer branding text to say 25.10/questing.
+  * Update Lubuntu and Ubuntu Unity welcome images.
 
  -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Wed, 13 Aug 2025 12:45:11 -0500
 
