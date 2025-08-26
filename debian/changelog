@@ -1,3 +1,12 @@
+calamares-settings-ubuntu (1:25.10.3) questing; urgency=medium
+
+  * Fix an FTBFS on riscv64 by disabling CGO on that platform.
+  * Add a "Static-Built-Using" field to the calamares-settings-ubuntu-common
+    binary package..
+  * Add an "XS-Go-Import-Path" field to the source package.
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Sun, 17 Aug 2025 10:07:53 -0500
+
 calamares-settings-ubuntu (1:25.10.2) questing; urgency=medium
 
   * Revert the packageselect refactoring from Plucky, go back to the

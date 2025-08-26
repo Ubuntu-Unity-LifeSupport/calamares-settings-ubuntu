@@ -13,8 +13,14 @@ export DATA_MODULES_DIR = "debian/calamares-settings-ubuntu-common-data/usr/lib/
 
 DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
+# Go builds on riscv64 oftentimes fail if using CGO, see
+# https://github.com/golang/go/issues/72840.
+ifeq ($(shell dpkg-architecture -qDEB_BUILD_ARCH),riscv64)
+	export CGO_ENABLED = 0
+endif
+
 %:
-	dh $@
+	dh $@ --with=builtusing
 
 override_dh_auto_configure:
 	(cd $(PKGSELECT) && mkdir build && cd build && cmake ..)
@@ -43,6 +49,6 @@ override_dh_missing:
 	chmod 644 $(MODULES_DIR)/pkgselect/module.desc
 	mkdir -pv $(USRDIR)/bin/
 	cp -v common/snap-seed-glue-emb/snap-seed-glue-emb $(USRDIR)/bin/snap-seed-glue-emb
-	mkdir -pv $(USRDIR)/libexec/ $(DATA_USRDIR)/libexec/
+	mkdir -pv $(DATA_USRDIR)/libexec/
 	cp -v common/fixconkeys-part1 $(DATA_USRDIR)/libexec/fixconkeys-part1
 	cp -v common/fixconkeys-part2 $(DATA_USRDIR)/libexec/fixconkeys-part2
