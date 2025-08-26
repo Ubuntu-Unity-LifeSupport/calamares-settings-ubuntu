@@ -1,3 +1,12 @@
+calamares-settings-ubuntu (1:25.10.4) questing; urgency=medium
+
+  * Don't try to uninstall packages to make a minimal system when stacked
+    squashfses are in use. (LP: #2121435)
+  * Unpack the second squashfs when doing non-minimal installs when stacked
+    squashfses are in use. (LP: #2121155)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 26 Aug 2025 17:21:35 -0500
+
 calamares-settings-ubuntu (1:25.10.3) questing; urgency=medium
 
   * Fix an FTBFS on riscv64 by disabling CGO on that platform.

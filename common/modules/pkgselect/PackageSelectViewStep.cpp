@@ -5,6 +5,7 @@
 #include "network/Manager.h"
 
 #include <QVariantMap>
+#include <QFile>
 
 PackageSelectViewStep::PackageSelectViewStep( QObject* parent )
     : Calamares::ViewStep( parent ),
@@ -33,7 +34,7 @@ bool PackageSelectViewStep::exists_and_true(const QString& key) const
 }
 
 QWidget* PackageSelectViewStep::widget()
-{   
+{
     return m_widget;
 }
 
@@ -187,6 +188,22 @@ PackageSelectViewStep::onLeave()
 	    }
     }
     gs->insert("packages", config);
+
+    /*
+     * This is a hack; a config file would be the right way to specify whether
+     * the distribution we're running on uses stacked squashfses or not. That
+     * being said, pulling in the full config framework for this would be
+     * overkill at the moment, so we're just using a flag file for this. If we
+     * ever need more than this, we should use Calamares' configuration
+     * framework instead.
+     */
+    if (QFile::exists("/etc/calamares/modules/stacked_squashfs.flag")) {
+        if (!ui->minimal_button->isChecked()) {
+            QVariantMap enableAllUnpack;
+            enableAllUnpack.insert("unpack_regular", true);
+            gs->insert("installation_data", enableAllUnpack);
+        }
+    }
 }
 
 void PackageSelectViewStep::updatePackageSelections(bool checked) {

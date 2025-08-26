@@ -1,0 +1,3 @@
+This file exists to indicate to Calamares that the OS image it is running on
+uses stacked squashfses. It is necessary for Calamares to unpack all
+applicable squashfses when doing a non-minimal install.
