@@ -13,7 +13,7 @@ export BROWSER='sudo -H -u lubuntu firefox'
 
 /usr/bin/openbox &
 /usr/bin/basicwallpaper /usr/share/lubuntu/wallpapers/lubuntu-default-wallpaper.png &
-sudo -E /usr/bin/calamares -D8 # This is intentionally *not* backgrounded.
+sudo /usr/bin/calamares -D8 # This is intentionally *not* backgrounded.
 # If it exits...
 killall basicwallpaper
 killall openbox

@@ -2,7 +2,7 @@
 Type=Application
 Version=1.0
 Name=Install Lubuntu 25.10 (OEM mode)
-Exec=sudo -E /usr/bin/calamares-launch-oem
+Exec=/usr/bin/calamares-launch-oem
 Icon=system-software-install
 Terminal=false
 StartupNotify=true

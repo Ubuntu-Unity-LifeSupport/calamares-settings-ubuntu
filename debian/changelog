@@ -1,3 +1,17 @@
+calamares-settings-ubuntu (1:25.10.5) questing; urgency=medium
+
+  * Stop using "sudo -E" to launch things, sudo-rs now ignores it.
+  * Fix how Calamares is launched in the first-time user setup session on
+    Kubuntu. (LP: #2125435)
+  * Explicitly remove calamares-settings-ubuntu-common(-data) after
+    installation. (LP: #2125700)
+  * Prevent the user from skipping a system restart after first-time user
+    setup on Kubuntu.
+  * Fix a strange-looking horizontal black line being shown by BasicWallpaper
+    in the first-time user setup session.
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Mon, 22 Sep 2025 13:43:26 -0500
+
 calamares-settings-ubuntu (1:25.10.4) questing; urgency=medium
 
   * Don't try to uninstall packages to make a minimal system when stacked

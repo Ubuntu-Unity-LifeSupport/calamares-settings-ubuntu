@@ -2,7 +2,7 @@
 Type=Application
 Version=1.0
 Name=Install Ubuntu Unity 25.10 (OEM mode)
-Exec=sudo -E /usr/bin/calamares-launch-oem
+Exec=/usr/bin/calamares-launch-oem
 Icon=ubuntu-unity-installer
 Terminal=false
 StartupNotify=true
