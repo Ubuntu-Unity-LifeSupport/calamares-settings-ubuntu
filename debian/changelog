@@ -1,4 +1,4 @@
-calamares-settings-ubuntu (1:25.10.6) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:25.10.6) questing; urgency=medium
 
   * Remove 'development version' title from Kubuntu welcome page image.
 
