@@ -52,3 +52,5 @@ override_dh_missing:
 	mkdir -pv $(DATA_USRDIR)/libexec/
 	cp -v common/fixconkeys-part1 $(DATA_USRDIR)/libexec/fixconkeys-part1
 	cp -v common/fixconkeys-part2 $(DATA_USRDIR)/libexec/fixconkeys-part2
+
+override_dh_dwz:
