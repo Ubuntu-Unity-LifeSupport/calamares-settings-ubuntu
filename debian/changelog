@@ -1,8 +1,8 @@
-calamares-settings-ubuntu (1:26.04.2) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:26.04.2) resolute; urgency=medium
 
   * Disable dh_dwz for now to avoid FTBFS.
 
- -- Rik Mills <rikmills@kde.org>  Sat, 01 Nov 2025 12:38:21 +0000
+ -- Rik Mills <rikmills@kde.org>  Sat, 01 Nov 2025 12:46:53 +0000
 
 calamares-settings-ubuntu (1:26.04.1) resolute; urgency=medium
 
