@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:26.04.1) UNRELEASED; urgency=medium
+
+  * Update Kubuntu branding for 26.04 (LP: #2130481)
+
+ -- Rik Mills <rikmills@kde.org>  Sat, 01 Nov 2025 11:02:39 +0000
+
 calamares-settings-ubuntu (1:25.10.6) questing; urgency=medium
 
   * Remove 'development version' title from Kubuntu welcome page image.

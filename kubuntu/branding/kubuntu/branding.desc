@@ -6,10 +6,10 @@ windowExpanding:    fullscreen
 strings:
     productName:         Kubuntu
     shortProductName:    Kubuntu
-    version:             25.10
+    version:             26.04
     shortVersion:        questing
     versionedName:       Kubuntu
-    shortVersionedName:  Kubuntu 25.10
+    shortVersionedName:  Kubuntu 26.04
     bootloaderEntryName: Kubuntu
     productUrl:          https://kubuntu.org/
     supportUrl:          https://kubuntu.org/contact/

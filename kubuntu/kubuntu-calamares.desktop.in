@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-_Name=Install Kubuntu 25.10
+_Name=Install Kubuntu 26.04
 _GenericName=Install Kubuntu
 Exec=sudo /usr/bin/calamares-launch-normal
 _Comment=Calamares — System Installer
