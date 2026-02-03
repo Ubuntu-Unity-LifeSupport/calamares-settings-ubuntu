@@ -1,3 +1,10 @@
+calamares-settings-ubuntu (1:26.04.3) resolute; urgency=medium
+
+  * Fix minimal installation by no longer trying to remove nonexistent
+    packages on Kubuntu and Ubuntu Unity. (LP: #2127711)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 03 Feb 2026 15:08:07 -0600
+
 calamares-settings-ubuntu (1:26.04.2) resolute; urgency=medium
 
   * Disable dh_dwz for now to avoid FTBFS.
