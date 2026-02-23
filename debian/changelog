@@ -4,6 +4,8 @@ calamares-settings-ubuntu (1:26.04.4) resolute; urgency=medium
     packages on Kubuntu and Ubuntu Unity. (LP: #2127711)
   * Update version numbers for OEM batch IDs and partition names for Lubuntu
     and Ubuntu Unity.
+  * Switch to supporting the livecd-rootfs-only ISO build system. (Reference:
+    https://discourse.ubuntu.com/t/spec-make-iso-in-livefs-build/73349)
 
  -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 03 Feb 2026 15:08:07 -0600
 
