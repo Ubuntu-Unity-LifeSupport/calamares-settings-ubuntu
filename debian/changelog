@@ -7,7 +7,7 @@ calamares-settings-ubuntu (1:26.04.4) resolute; urgency=medium
   * Switch to supporting the livecd-rootfs-only ISO build system. (Reference:
     https://discourse.ubuntu.com/t/spec-make-iso-in-livefs-build/73349)
 
- -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 03 Feb 2026 15:08:07 -0600
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Mon, 23 Feb 2026 18:15:28 -0500
 
 calamares-settings-ubuntu (1:26.04.3) resolute; urgency=medium
 
