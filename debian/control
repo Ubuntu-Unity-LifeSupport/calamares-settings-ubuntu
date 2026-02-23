@@ -60,8 +60,8 @@ Description: Lubuntu Calamares Settings and Branding
 Package: calamares-settings-ubuntu-unity
 Architecture: all
 Depends: calamares-settings-ubuntu-common (>= ${binary:Version}),
-         qt6-style-kvantum,
-         qt6-style-kvantum-themes,
+         qt-style-kvantum,
+         qt-style-kvantum-themes,
          ${misc:Depends},
          ${qml6:Depends}
 Conflicts: calamares-settings-ubuntu-flavor
