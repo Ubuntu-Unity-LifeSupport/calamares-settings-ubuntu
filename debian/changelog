@@ -1,3 +1,10 @@
+calamares-settings-ubuntu (1:26.04.5) resolute; urgency=medium
+
+  * Fix an install crash caused by a missing `umount` command in
+    shellprocess_rmcdrom.conf.
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Thu, 05 Mar 2026 16:21:22 -0500
+
 calamares-settings-ubuntu (1:26.04.4) resolute; urgency=medium
 
   * Fix minimal installation by no longer trying to remove nonexistent
