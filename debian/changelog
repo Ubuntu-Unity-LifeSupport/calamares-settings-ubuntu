@@ -1,3 +1,10 @@
+calamares-settings-ubuntu (1:26.04.6) resolute; urgency=medium
+
+  * Don't crash the installer if the software database update fails (LP:
+    #2143847)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 10 Mar 2026 15:22:04 -0400
+
 calamares-settings-ubuntu (1:26.04.5) resolute; urgency=medium
 
   * Fix an install crash caused by a missing `umount` command in
