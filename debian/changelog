@@ -2,6 +2,8 @@ calamares-settings-ubuntu (1:26.04.6) resolute; urgency=medium
 
   * Don't crash the installer if the software database update fails (LP:
     #2143847)
+  * Don't warn the user when using an encrypted /boot partition with an
+    encrypted root partition (LP: #2107507)
 
  -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 10 Mar 2026 15:22:04 -0400
 
