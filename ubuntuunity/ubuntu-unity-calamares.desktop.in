@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-_Name=Install Ubuntu Unity 25.10
+_Name=Install Ubuntu Unity 26.04
 _GenericName=Install Ubuntu Unity
 Exec=sudo /usr/bin/calamares-launch-normal
 _Comment=Calamares — System Installer
