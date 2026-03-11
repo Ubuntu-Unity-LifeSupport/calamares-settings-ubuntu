@@ -7,7 +7,7 @@ calamares-settings-ubuntu (1:26.04.6) resolute; urgency=medium
   * Update Lubuntu and Ubuntu Unity branding to state the OS version as 26.04
     (LP: #2130481)
 
- -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 10 Mar 2026 15:22:04 -0400
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Wed, 11 Mar 2026 17:01:45 -0400
 
 calamares-settings-ubuntu (1:26.04.5) resolute; urgency=medium
 
