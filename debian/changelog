@@ -1,3 +1,10 @@
+calamares-settings-ubuntu (1:26.04.7) resolute; urgency=medium
+
+  * Add Calamares to the installed system when installing Lubuntu in OEM mode
+    (LP: #2127123)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Mon, 16 Mar 2026 12:32:10 -0400
+
 calamares-settings-ubuntu (1:26.04.6) resolute; urgency=medium
 
   * Don't crash the installer if the software database update fails (LP:
