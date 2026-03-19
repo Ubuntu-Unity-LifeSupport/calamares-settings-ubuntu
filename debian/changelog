@@ -1,3 +1,10 @@
+calamares-settings-ubuntu (1:26.04.8) resolute; urgency=medium
+
+  * Remove dependency on dracut-core to unbreak encrypted installations on
+    flavors that still use initramfs-tools.
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Thu, 19 Mar 2026 11:45:08 -0400
+
 calamares-settings-ubuntu (1:26.04.7) resolute; urgency=medium
 
   * Add Calamares to the installed system when installing Lubuntu in OEM mode

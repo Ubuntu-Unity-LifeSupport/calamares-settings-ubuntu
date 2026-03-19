@@ -77,7 +77,6 @@ Architecture: any
 Depends: calamares (>= 3.3.13-0ubuntu4),
          calamares-settings-ubuntu-common-data (= ${binary:Version}),
          cryptsetup,
-         dracut-core,
          kdialog,
          keyutils,
          libglib2.0-bin,
