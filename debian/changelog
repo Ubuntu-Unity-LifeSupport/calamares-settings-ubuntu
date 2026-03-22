@@ -1,8 +1,8 @@
-calamares-settings-ubuntu (1:26.04.9) UNRELEASED; urgency=medium
+calamares-settings-ubuntu (1:26.04.9) resolute; urgency=medium
 
   * Fix release mascot in slide 07 for Resolute Raccoon.
 
- -- Rik Mills <rikmills@kde.org>  Sun, 22 Mar 2026 14:00:29 +0000
+ -- Rik Mills <rikmills@kde.org>  Sun, 22 Mar 2026 14:02:49 +0000
 
 calamares-settings-ubuntu (1:26.04.8) resolute; urgency=medium
 
