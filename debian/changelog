@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:26.04.9) UNRELEASED; urgency=medium
+
+  * Fix release mascot in slide 07 for Resolute Raccoon.
+
+ -- Rik Mills <rikmills@kde.org>  Sun, 22 Mar 2026 14:00:29 +0000
+
 calamares-settings-ubuntu (1:26.04.8) resolute; urgency=medium
 
   * Remove dependency on dracut-core to unbreak encrypted installations on
