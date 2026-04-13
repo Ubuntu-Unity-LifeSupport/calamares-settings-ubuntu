@@ -1,3 +1,11 @@
+calamares-settings-ubuntu (1:26.04.10) resolute; urgency=medium
+
+  * Remove leftover Calamares libraries on flavors that don't use stacked
+    squashfses (LP: #2144369)
+  * Add slideshow and welcome images for Kubuntu 26.04 (LP: #2147510)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Fri, 20 Mar 2026 11:49:33 -0400
+
 calamares-settings-ubuntu (1:26.04.9) resolute; urgency=medium
 
   * Fix release mascot in slide 07 for Resolute Raccoon.
