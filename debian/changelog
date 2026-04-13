@@ -4,7 +4,7 @@ calamares-settings-ubuntu (1:26.04.10) resolute; urgency=medium
     squashfses (LP: #2144369)
   * Add slideshow and welcome images for Kubuntu 26.04 (LP: #2147510)
 
- -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Fri, 20 Mar 2026 11:49:33 -0400
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Mon, 13 Apr 2026 16:55:15 -0400
 
 calamares-settings-ubuntu (1:26.04.9) resolute; urgency=medium
 
