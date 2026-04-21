@@ -1,3 +1,9 @@
+calamares-settings-ubuntu (1:26.04.12) resolute; urgency=medium
+
+  * Fix OEM installation mode for Kubuntu and Ubuntu Unity. (LP: #2149813)
+
+ -- Aaron Rainbolt <arraybolt3@ubuntu.com>  Tue, 21 Apr 2026 11:05:22 -0400
+
 calamares-settings-ubuntu (1:26.04.11) resolute; urgency=medium
 
   * Fix first slide of Kubuntu's slideshow.
