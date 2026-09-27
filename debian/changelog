@@ -1,3 +1,11 @@
+calamares-settings-ubuntu (1:26.04.12+unity3) resolute; urgency=medium
+
+  * Makefile: set the Ubuntu Unity sudoers.oem to 0440. The chmod in the
+    Ubuntu Unity section named Kubuntu's copy, so ours shipped as 0644 and
+    became /etc/sudoers of the OEM system with a mode visudo -c rejects.
+
+ -- Ubuntu Unity Life Support <mihail.rozshko@gmail.com>  Sun, 27 Sep 2026 18:57:25 +0000
+
 calamares-settings-ubuntu (1:26.04.12+unity2) resolute; urgency=medium
 
   * debian/changelog: restore the archive history. The +unity1 upload

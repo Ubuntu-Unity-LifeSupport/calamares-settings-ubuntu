@@ -48,7 +48,7 @@ all:
 	(cd ubuntuunity && mkdir oemconfig && cd oemconfig && mkdir -p usr/bin && mkdir -p etc/calamares && mkdir -p usr/share/xsessions && mkdir -p usr/libexec && mkdir -p etc/lightdm && mkdir -p usr/share/applications && mkdir -p home/oem/Desktop)
 	(cp ubuntuunity/calamares-logs-helper ubuntuunity/oemconfig/usr/bin/)
 	(cp ubuntuunity/oem/lightdm.conf ubuntuunity/oemconfig/etc/lightdm/)
-	(cp ubuntuunity/oem/sudoers.oem ubuntuunity/oemconfig/etc/ && chmod 400 kubuntu/oemconfig/etc/sudoers.oem)
+	(cp ubuntuunity/oem/sudoers.oem ubuntuunity/oemconfig/etc/ && chmod 440 ubuntuunity/oemconfig/etc/sudoers.oem)
 	(cp ubuntuunity/oem/calamares-oemfinish.sh ubuntuunity/oemconfig/usr/libexec/)
 	(cp ubuntuunity/oem/calamares-finish-oem ubuntuunity/oemconfig/usr/bin/)
 	(cp ubuntuunity/oem/calamares-finish-oem.desktop ubuntuunity/oemconfig/usr/share/applications/)
